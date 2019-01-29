@@ -1,5 +1,6 @@
 package com.github.jvanheesch.wicket;
 
+import org.apache.wicket.core.request.mapper.CryptoMapper;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.protocol.http.WebApplication;
 
@@ -26,5 +27,6 @@ public class WicketApplication extends WebApplication {
         super.init();
 
         // add your configuration here
+        this.setRootRequestMapper(new CryptoMapper(this.getRootRequestMapper(), this));
     }
 }
