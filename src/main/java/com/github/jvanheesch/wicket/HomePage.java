@@ -1,18 +1,23 @@
 package com.github.jvanheesch.wicket;
 
+import org.apache.wicket.markup.head.CssHeaderItem;
+import org.apache.wicket.markup.head.IHeaderResponse;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.basic.Label;
-import org.apache.wicket.request.mapper.parameter.PageParameters;
+import org.apache.wicket.request.resource.PackageResourceReference;
 
 public class HomePage extends WebPage {
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = -2661623348955324736L;
 
-    public HomePage(final PageParameters parameters) {
-        super(parameters);
+    @Override
+    protected void onInitialize() {
+        super.onInitialize();
 
-        add(new Label("version", getApplication().getFrameworkSettings().getVersion()));
+        this.add(new Label("styledLabel", "styledLabel"));
+    }
 
-        // TODO Add your page's components here
-
+    @Override
+    public void renderHead(IHeaderResponse response) {
+        response.render(CssHeaderItem.forReference(new PackageResourceReference(HomePage.class, "stylesheet.css")));
     }
 }
